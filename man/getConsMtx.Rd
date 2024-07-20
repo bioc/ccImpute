@@ -2,16 +2,31 @@
 % Please edit documentation in R/RcppExports.R
 \name{getConsMtx}
 \alias{getConsMtx}
-\title{Computes consensus matrix given cluster labels}
+\title{This function calculates an average consensus matrix from a set of
+clustering solutions. It filters out values below a specified minimum
+threshold (`consMin`) and normalizes the remaining non-zero columns to sum
+to 1.}
 \usage{
-getConsMtx(dat)
+getConsMtx(dat, consMin, n_cores)
 }
 \arguments{
-\item{dat}{a matrix containing clustering solutions in columns}
+\item{dat}{An integer matrix where each column represents a different
+clustering solution (cluster assignments for each data point).}
+
+\item{consMin}{The minimum consensus value to retain. Values below this
+threshold are set to zero.}
+
+\item{n_cores}{The number of cores to use for parallel processing.
+This can speed up the normalization step.}
 }
 \value{
-consensus matrix
+A processed consensus matrix where each element (i, j) represents
+the proportion of times data points i and j were assigned to the same
+cluster with filtering and normalization applied.
 }
 \description{
-Computes consensus matrix given cluster labels
+This function calculates an average consensus matrix from a set of
+clustering solutions. It filters out values below a specified minimum
+threshold (`consMin`) and normalizes the remaining non-zero columns to sum
+to 1.
 }

@@ -3,11 +3,21 @@ Type: Package
 Title: ccImpute: an accurate and scalable consensus clustering based approach to
 	impute dropout events in the single-cell RNA-seq data 
 	(https://doi.org/10.1186/s12859-022-04814-8)
-Version: 1.6.0
-Authors@R: person("Marcin", "Malec",
-  email = "mamalec@iu.edu",
-  role = c("cre", "aut"),
-  comment = c(ORCID = "0000-0002-2354-513X"))
+Version: 1.6.1
+Authors@R: c(
+	person("Marcin", "Malec",
+  	email = "mamalec@iu.edu",
+  	role = c("cre", "aut"),
+  	comment = c(ORCID = "0000-0002-2354-513X")),
+  	person("Parichit", "Sharma",
+  	email = "parishar@iu.edu",
+  	role = c("aut")),
+  	person("Hasan", "Kurban",
+  	email = "hasan.kurban@tamu.edu",
+  	role = c("aut")),
+  	 person("Mehmet", "Dalklic",
+  	email = "dalkilic@indiana.edu",
+  	role = c("aut")))
 Description: Dropout events make the lowly expressed genes indistinguishable 
 	from true zero expression and different than the low expression present in 
 	cells of the same type. This issue makes any subsequent downstream analysis 
@@ -18,24 +28,18 @@ Description: Dropout events make the lowly expressed genes indistinguishable
 	the least amount of new noise as measured by clustering performance 
 	characteristics on datasets with known cell identities.
 License: GPL-3
-Imports: Rcpp, matrixStats, stats, SIMLR, BiocParallel
+Imports: Rcpp, sparseMatrixStats, stats, BiocParallel, irlba, 
+    SingleCellExperiment, Matrix, SummarizedExperiment
 LinkingTo: Rcpp, RcppEigen
 Encoding: UTF-8
 LazyData: FALSE
 BugReports: https://github.com/khazum/ccImpute/issues
-RoxygenNote: 7.2.1
-biocViews: SingleCell, PrincipalComponent, DimensionReduction, 
+URL: https://github.com/khazum/ccImpute/
+RoxygenNote: 7.3.2
+biocViews: SingleCell, Sequencing, PrincipalComponent, DimensionReduction, 
 	Clustering, RNASeq, Transcriptomics
 biocType: Software
-Suggests: 
-    knitr,
-    rmarkdown,
-    BiocStyle,
-    sessioninfo,
-    scRNAseq,
-    scater,
-    SingleCellExperiment,
-    mclust,
-    testthat (>= 3.0.0)
+Suggests: knitr, rmarkdown, BiocStyle, sessioninfo, scRNAseq, scater,
+          mclust, testthat (>= 3.0.0), splatter
 VignetteBuilder: knitr
 Config/testthat/edition: 3
