@@ -70,7 +70,7 @@ sce <- ccImpute(sce, BPPARAM=BPPARAM)
 summary(assay(sce, "imputed"))
 ```
 ## Release Notes
-### Version 1.7.1
+### Version 1.6.1
 - Performance Optimizations:
     - Significantly enhanced calculation speed for Pearson and Spearman 
       correlation matrices, including weighted versions.
