@@ -11,34 +11,95 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// wCorDist
-Eigen::MatrixXd wCorDist(const Eigen::Map<Eigen::MatrixXd> x, const Eigen::Map<Eigen::VectorXd> w, const bool useRanks, const unsigned int n_cores);
-RcppExport SEXP _ccImpute_wCorDist(SEXP xSEXP, SEXP wSEXP, SEXP useRanksSEXP, SEXP n_coresSEXP) {
+// colRanks_fast
+Eigen::MatrixXd colRanks_fast(Eigen::Map<Eigen::MatrixXd> x, const unsigned int n_cores);
+RcppExport SEXP _ccImpute_colRanks_fast(SEXP xSEXP, SEXP n_coresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const unsigned int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(colRanks_fast(x, n_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sparseColRanks_fast
+Eigen::MatrixXd sparseColRanks_fast(const Eigen::MappedSparseMatrix<double> x, const unsigned int n_cores);
+RcppExport SEXP _ccImpute_sparseColRanks_fast(SEXP xSEXP, SEXP n_coresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Eigen::MappedSparseMatrix<double> >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const unsigned int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(sparseColRanks_fast(x, n_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// wCor_fast
+Eigen::MatrixXd wCor_fast(Eigen::Map<Eigen::MatrixXd> x, const Eigen::Map<Eigen::VectorXd> w, const unsigned int n_cores);
+RcppExport SEXP _ccImpute_wCor_fast(SEXP xSEXP, SEXP wSEXP, SEXP n_coresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::VectorXd> >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const unsigned int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(wCor_fast(x, w, n_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cor_fast
+Eigen::MatrixXd cor_fast(Eigen::Map<Eigen::MatrixXd> x, const unsigned int n_cores);
+RcppExport SEXP _ccImpute_cor_fast(SEXP xSEXP, SEXP n_coresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const unsigned int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(cor_fast(x, n_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rowVars_fast
+Eigen::VectorXd rowVars_fast(const Eigen::Map<Eigen::MatrixXd> x, int n_cores);
+RcppExport SEXP _ccImpute_rowVars_fast(SEXP xSEXP, SEXP n_coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::VectorXd> >::type w(wSEXP);
-    Rcpp::traits::input_parameter< const bool >::type useRanks(useRanksSEXP);
-    Rcpp::traits::input_parameter< const unsigned int >::type n_cores(n_coresSEXP);
-    rcpp_result_gen = Rcpp::wrap(wCorDist(x, w, useRanks, n_cores));
+    Rcpp::traits::input_parameter< int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(rowVars_fast(x, n_cores));
     return rcpp_result_gen;
 END_RCPP
 }
 // getConsMtx
-Eigen::MatrixXd getConsMtx(const Eigen::Map<Eigen::MatrixXi> dat);
-RcppExport SEXP _ccImpute_getConsMtx(SEXP datSEXP) {
+Eigen::MatrixXd getConsMtx(const Eigen::Map<Eigen::MatrixXi> dat, double consMin, int n_cores);
+RcppExport SEXP _ccImpute_getConsMtx(SEXP datSEXP, SEXP consMinSEXP, SEXP n_coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXi> >::type dat(datSEXP);
-    rcpp_result_gen = Rcpp::wrap(getConsMtx(dat));
+    Rcpp::traits::input_parameter< double >::type consMin(consMinSEXP);
+    Rcpp::traits::input_parameter< int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(getConsMtx(dat, consMin, n_cores));
     return rcpp_result_gen;
 END_RCPP
 }
-// solveDrops
-Eigen::MatrixXd solveDrops(const Eigen::Map<Eigen::MatrixXd> cm, Eigen::Map<Eigen::MatrixXd> em, const Eigen::Map<Eigen::MatrixXi> ids, const int n_cores);
-RcppExport SEXP _ccImpute_solveDrops(SEXP cmSEXP, SEXP emSEXP, SEXP idsSEXP, SEXP n_coresSEXP) {
+// getScale
+Rcpp::List getScale(const Eigen::Map<Eigen::MatrixXd> x, int n_cores);
+RcppExport SEXP _ccImpute_getScale(SEXP xSEXP, SEXP n_coresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(getScale(x, n_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// solver
+Eigen::MatrixXd solver(const Eigen::Map<Eigen::MatrixXd> cm, Eigen::Map<Eigen::MatrixXd> em, const Eigen::Map<Eigen::MatrixXi> ids, const int n_cores);
+RcppExport SEXP _ccImpute_solver(SEXP cmSEXP, SEXP emSEXP, SEXP idsSEXP, SEXP n_coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -46,15 +107,50 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type em(emSEXP);
     Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXi> >::type ids(idsSEXP);
     Rcpp::traits::input_parameter< const int >::type n_cores(n_coresSEXP);
-    rcpp_result_gen = Rcpp::wrap(solveDrops(cm, em, ids, n_cores));
+    rcpp_result_gen = Rcpp::wrap(solver(cm, em, ids, n_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// solver2
+Eigen::VectorXd solver2(const Eigen::Map<Eigen::MatrixXd> cm, const Eigen::Map<Eigen::MatrixXd> em, const Eigen::Map<Eigen::MatrixXi> ids, const int n_cores);
+RcppExport SEXP _ccImpute_solver2(SEXP cmSEXP, SEXP emSEXP, SEXP idsSEXP, SEXP n_coresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type cm(cmSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type em(emSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXi> >::type ids(idsSEXP);
+    Rcpp::traits::input_parameter< const int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(solver2(cm, em, ids, n_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sparseSolver2
+Eigen::VectorXd sparseSolver2(const Eigen::Map<Eigen::MatrixXd> cm, const Eigen::MappedSparseMatrix<double> em, const Eigen::Map<Eigen::MatrixXi> ids, const int n_cores);
+RcppExport SEXP _ccImpute_sparseSolver2(SEXP cmSEXP, SEXP emSEXP, SEXP idsSEXP, SEXP n_coresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type cm(cmSEXP);
+    Rcpp::traits::input_parameter< const Eigen::MappedSparseMatrix<double> >::type em(emSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXi> >::type ids(idsSEXP);
+    Rcpp::traits::input_parameter< const int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(sparseSolver2(cm, em, ids, n_cores));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_ccImpute_wCorDist", (DL_FUNC) &_ccImpute_wCorDist, 4},
-    {"_ccImpute_getConsMtx", (DL_FUNC) &_ccImpute_getConsMtx, 1},
-    {"_ccImpute_solveDrops", (DL_FUNC) &_ccImpute_solveDrops, 4},
+    {"_ccImpute_colRanks_fast", (DL_FUNC) &_ccImpute_colRanks_fast, 2},
+    {"_ccImpute_sparseColRanks_fast", (DL_FUNC) &_ccImpute_sparseColRanks_fast, 2},
+    {"_ccImpute_wCor_fast", (DL_FUNC) &_ccImpute_wCor_fast, 3},
+    {"_ccImpute_cor_fast", (DL_FUNC) &_ccImpute_cor_fast, 2},
+    {"_ccImpute_rowVars_fast", (DL_FUNC) &_ccImpute_rowVars_fast, 2},
+    {"_ccImpute_getConsMtx", (DL_FUNC) &_ccImpute_getConsMtx, 3},
+    {"_ccImpute_getScale", (DL_FUNC) &_ccImpute_getScale, 2},
+    {"_ccImpute_solver", (DL_FUNC) &_ccImpute_solver, 4},
+    {"_ccImpute_solver2", (DL_FUNC) &_ccImpute_solver2, 4},
+    {"_ccImpute_sparseSolver2", (DL_FUNC) &_ccImpute_sparseSolver2, 4},
     {NULL, NULL, 0}
 };
 

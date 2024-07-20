@@ -1,3 +1,32 @@
-ccImpute 0.99.0 (Release date: 2022-04-09):
-
-    * The first version 0.99.0 is submitted to Bioconductor
+CHANGES IN VERSION ccImpute 1.6.1
+-----------------------------------
++ Performance Optimizations:
+    o Significantly enhanced calculation speed for Pearson and Spearman 
+      correlation matrices, including weighted versions.
+    o Leveraged the Irlba package for efficient truncated Singular Value 
+      Decomposition (SVD) computation.
+    o Optimized imputation by limiting the number of singular components while 
+      maintaining accuracy of downstream analysis, with adjustable maximum 
+      limits based on dataset size.
+    o Optimized the identification of dropout events.
+    o Introduced a fast dropout calculation method based on non-zero expression
+      value means, preserving imputation performance, and great improving 
+      runtime speed.
+    o Replaced SIMLR with Tracy-Widom Bound for estimating k when not provided,
+      resulting in faster calculations and improved empirical performance.
++ Expanded Functionality:
+    o Added support for sparse matrices in dgCmatrix format, improving memory 
+      efficiency.
++ Documentation Enhancements:
+    o Expanded the vignette with detailed guidance and practical examples for
+      maximizing the package's value and computational speed.
+    o Included comparative benchmarking against previous releases in the
+      vignette, demonstrating the performance improvements.
++ Overall Impact:
+    o The ccImpute package is now substantially faster and more efficient.
+    o Users can expect a smoother experience with improved documentation and
+      expanded functionality.
+     
+CHANGES IN VERSION ccImpute 0.99.0:
+-----------------------------------
+    o The first version 0.99.0 is submitted to Bioconductor
