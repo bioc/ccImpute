@@ -8,7 +8,6 @@
 // [[Rcpp::plugins(openmp)]]
 
 #include <algorithm>
-#include <ranges>
 #include <random>
 #include <vector>
 #include <unordered_map>
