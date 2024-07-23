@@ -11,11 +11,13 @@ Authors@R: c(
   	comment = c(ORCID = "0000-0002-2354-513X")),
   	person("Parichit", "Sharma",
   	email = "parishar@iu.edu",
-  	role = c("aut")),
+  	role = c("aut"),
+  	comment = c(ORCID = "0000-0003-0822-1089")),
   	person("Hasan", "Kurban",
   	email = "hasan.kurban@tamu.edu",
-  	role = c("aut")),
-  	 person("Mehmet", "Dalklic",
+  	role = c("aut"),
+  	comment = c(ORCID = "0000-0003-3142-2866")),
+  	person("Mehmet", "Dalkilic",
   	email = "dalkilic@indiana.edu",
   	role = c("aut")))
 Description: Dropout events make the lowly expressed genes indistinguishable 
